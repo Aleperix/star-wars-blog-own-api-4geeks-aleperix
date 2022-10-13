@@ -1,3 +1,54 @@
 /* 
     General Styles
 */
+
+body {
+    font-family: 'Kanit', sans-serif;
+}
+
+h1, h2 {
+    font-family: 'Silkscreen', cursive;
+}
+
+/*
+    Bookmark remove icon
+*/
+.bookmark-remove-none > i {
+    visibility: hidden;
+}
+
+.bookmark-remove-none:hover > i {
+    visibility: visible;
+}
+.bookmark-remove-none a:hover {
+    text-shadow: 0 0 1px rgba(255,255,255,.3),0 0 2px rgba(255,255,255,.3),0 0 5px rgba(255,255,255,.2);
+}
+
+/*
+    Scrollbar design
+*/
+body::-webkit-scrollbar {
+    width: 12px;
+  }
+  body::-webkit-scrollbar-track {
+    background: rgb(68,217,232);
+    border-radius: 20px;
+  }
+  body::-webkit-scrollbar-thumb {
+    background-color: rgb(65, 10, 82);
+    border-radius: 20px;
+    border: 3px solid rgb(68,217,232);
+  }
+  /* Colores de barra internas */
+  div::-webkit-scrollbar {
+    width: 10px;
+  }
+  div::-webkit-scrollbar-track {
+    background: rgb(68,217,232);
+    border-radius: 20px;
+  }
+  div::-webkit-scrollbar-thumb {
+    background-color: rgb(65, 10, 82);
+    border-radius: 20px;
+    border: 3px solid rgb(68,217,232);
+  }
