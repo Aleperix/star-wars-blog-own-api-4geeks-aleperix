@@ -1,26 +1,9 @@
-import React, {useState, useEffect, useContext} from "react";
+import React, {useContext} from "react";
 import {Link} from "react-router-dom";
 import { Context } from "../store/appContext";
 
 export const Planets = () => {
-	const [planets, setPlanets] = useState([])
 	const {store, actions} = useContext(Context)
-
-	const getList = async ()=>{
-        try {
-            const response = await fetch("https://swapi.dev/api/planets", {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json"
-                }
-            })
-            const data = await response.json()
-			setPlanets(data.results)
-            console.log(data);
-        } catch (error) {
-            console.log(error);
-        }
-    }
 
 	function bookmarkExist(index) {
 		let valueExist;
@@ -34,9 +17,6 @@ export const Planets = () => {
 		}
 	}
 
-	useEffect(()=>{
-        getList()
-    },[])
 	return (
 		<>
 			<div className="container mt-2">
@@ -45,16 +25,16 @@ export const Planets = () => {
 			</div>
 			<div className="container py-2 overflow-auto">
 				<div className="d-flex flex-row flex-nowrap">
-					{planets.map((element, index) => {
+					{store.planets.map((element, index) => {
 						return(
 							<div className="card mx-1" key={index} style={{minWidth: "18rem"}}>
 								{index === 0 ?
-									<Link to={"/planet/"+(index+1)}><img src={"https://static.wikia.nocookie.net/esstarwars/images/b/b0/Tatooine_TPM.png"} className="card-img-top" alt="Imagen no encontrada"/></Link>
+									<Link to={"/planet/"+(index+1)}><img src={"https://i.imgur.com/N74ARLR.png"} className="card-img-top" alt="Imagen no encontrada"/></Link>
 								:
 									<Link to={"/planet/"+(index+1)}><img src={"https://starwars-visualguide.com/assets/img/planets/"+(index+1)+".jpg"} className="card-img-top" alt="Imagen no encontrada"/></Link>
 								}
 								<div className="card-body d-flex flex-column bg-dark">
-									<h5 className="card-title">{element.name}</h5>
+									<h5 className="card-title text-center">{element.name}</h5>
 									<p className="card-text">Population: {element.population}</p>
 									<p className="card-text">Terrain: {element.terrain}</p>
 									<div className="d-flex mt-auto">

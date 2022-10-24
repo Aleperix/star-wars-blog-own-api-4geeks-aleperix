@@ -1,26 +1,12 @@
-import React, {useState, useEffect, useRef} from "react";
+import React, {useContext, useRef, useState, useEffect} from "react";
 import {useParams} from "react-router-dom";
+import { Context } from "../store/appContext";
 
 export const Character = () => {
     const theid = useParams()
-    const [character, setCharacter] = useState("")
+    const [character, setCharacter] = useState({})
+    const {actions} = useContext(Context)
     const myAudio = useRef()
-
-    const getData = async ()=>{
-        try {
-            const response = await fetch("https://www.swapi.tech/api/people/"+theid.theid, {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json"
-                }
-            })
-            const data = await response.json()
-			setCharacter(data.result.properties)
-            console.log(data.result);
-        } catch (error) {
-            console.log(error);
-        }
-    }
 
     function easterEgg(){
         if (myAudio.current.paused === true) {
@@ -30,9 +16,10 @@ export const Character = () => {
         }
     }
 
-	useEffect(()=>{
-        getData()
-    },[])
+    useEffect(() => {
+        setCharacter(actions.getOneCharacter(theid.theid))
+    }, []);
+
 	return (
 		<div className="container">
             <div className="container d-flex justify-content-center m-5">
