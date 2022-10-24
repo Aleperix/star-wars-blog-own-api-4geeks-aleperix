@@ -48,7 +48,7 @@ export const Login = () => {
                         </div>
                         <div className="input-group input-group-lg mt-2">
                             <label className="input-group-text" htmlFor="loginPassword" id="inputGroup-sizing-lg"><i className="fas fa-lock"></i></label>
-                            <input value={password} type="text" id="loginPassword" className="form-control" onChange={(e) => setPassword(e.target.value)} placeholder="Your password" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg"/>
+                            <input value={password} type="password" id="loginPassword" className="form-control" onChange={(e) => setPassword(e.target.value)} placeholder="Your password" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg"/>
                         </div>
                         <div className="mb-3 mt-4 form-check">
                             <input type="checkbox" className="form-check-input" id="loginCheck"/>

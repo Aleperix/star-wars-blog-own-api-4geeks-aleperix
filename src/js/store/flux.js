@@ -106,17 +106,22 @@ const getState = ({ getStore, getActions, setStore }) => {
 			addBookmark: async (value) => {
 				const action = getActions();
 				let response = await action.postData('/user/bookmarks/new', value);
-				console.log(response);
+				if (response.hasOwnProperty('response')) {
+					response = response.response
+					if (response.status == 403) {
+						return response.status
+					}else{
+						return response.data
+					}
+					console.log(response)
+				}
 			},
-			addBookmark1: async (charId, plaId, value) => {
+			addBookmark1: async (value) => {
 				const action = getActions();
 				let response = await action.postData('/user/bookmarks/new', value);
 				if (response.hasOwnProperty('response')) {
 					response = response.response
-					if (response.data.status == 403) {
-						code
-					}
-					console.log(response);
+					console.log(response)
 				}
 				// let valueExist, valueIndex;
 				// for (let i = 0; i < store.bookmarks.length; i++) {
