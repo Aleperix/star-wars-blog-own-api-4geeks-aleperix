@@ -39,7 +39,7 @@ export const Planets = () => {
 									<p className="card-text">Terrain: {element.terrain}</p>
 									<div className="d-flex mt-auto">
 										<Link to={"/planet/"+(index+1)} className="btn btn-outline-primary">Learn more!</Link>
-										<button className="btn btn-outline-warning ms-auto" onClick={()=> actions.addBookmark(("p-"+index), "(P) "+element.name)}><i className={bookmarkExist("p-"+index) === true ? "fas fa-heart text-danger" :"far fa-heart"}></i></button>
+										<button className="btn btn-outline-warning ms-auto" onClick={()=> actions.addBookmark({"user_id":store.user.id, "character_id":null, "planet_id":(index+1)})}><i className={bookmarkExist("p-"+index) === true ? "fas fa-heart text-danger" :"far fa-heart"}></i></button>
 									</div>
 								</div>
 							</div>

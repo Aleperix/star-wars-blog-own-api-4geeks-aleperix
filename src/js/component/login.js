@@ -19,7 +19,7 @@ export const Login = () => {
             setLoginError('Hay campos vacíos');
         }
         else if (onLogged == true) {
-            history.push("/")
+            history.go(0)
             closeModal.current.click() 
             setUsername("")
             setPassword("")

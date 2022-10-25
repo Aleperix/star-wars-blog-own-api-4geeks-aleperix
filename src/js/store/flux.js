@@ -101,10 +101,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const store = getStore()
 				const response = await action.getData('/user/'+id+'/bookmarks');
 				console.log(response);
-				// setStore({bookmarks: response.data})
+				setStore({bookmarks: response.data})
 			},
 			addBookmark: async (value) => {
 				const action = getActions();
+				console.log(value);
 				let response = await action.postData('/user/bookmarks/new', value);
 				if (response.hasOwnProperty('response')) {
 					response = response.response

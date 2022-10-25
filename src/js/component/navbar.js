@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, {useContext, useEffect} from "react";
 import { Link, useHistory } from "react-router-dom";
 import { Context } from "../store/appContext";
 import {Login} from "../component/login.js";
@@ -10,7 +10,7 @@ export const Navbar = () => {
 	const handleLogout = ()=>{
 		let onLogged = actions.logout();
 		if(!onLogged){
-			history.push("/");
+			history.go(0)
 		}
 	}
 
@@ -34,11 +34,11 @@ export const Navbar = () => {
 							:
 								store.bookmarks.map((element, index) => {
 									return(
-										element.label.includes('(C)') 
+										element.character_id != null 
 										?
-											<li key={index} className="d-flex justify-content-between align-items-center bookmark-remove-none"><Link to={"/character/"+(index+1)} className="dropdown-item d-inline text-white bg-light">{element.label} </Link><i className="far fa-trash-alt text-danger d-inline mx-2" role="button" onClick={()=> actions.removeBookmark(index)}></i></li>
+											<li key={index} className="d-flex justify-content-between align-items-center bookmark-remove-none" onClick={()=> console.log(store.characters[element.character_id].name)}><Link to={"/character/"+(index+1)} className="dropdown-item d-inline text-white bg-light">(C) {store.characters[index].name} </Link><i className="far fa-trash-alt text-danger d-inline mx-2" role="button" onClick={()=> actions.removeBookmark(index)}></i></li>
 										:
-											<li key={index} className="d-flex justify-content-between align-items-center bookmark-remove-none"><Link to={"/planet/"+(index+1)} className="dropdown-item d-inline text-white bg-light">{element.label} </Link><i className="far fa-trash-alt text-danger d-inline mx-2" role="button" onClick={()=> actions.removeBookmark(index)}></i></li>
+											<li key={index} className="d-flex justify-content-between align-items-center bookmark-remove-none" onClick={()=> console.log(store.planets[element.planet_id].name)}><Link to={"/planet/"+(index+1)} className="dropdown-item d-inline text-white bg-light"> </Link><i className="far fa-trash-alt text-danger d-inline mx-2" role="button" onClick={()=> actions.removeBookmark(index)}></i></li>
 								)})
 							}
 							</ul>
